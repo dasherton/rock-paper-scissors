@@ -34,30 +34,27 @@
 
 			function playRound(playerSelection, computerSelection)
 			{
-				const playerLower = playerSelection.toLowerCase();
-				const computerLower = computerSelection.toLowerCase();
-
-				if(playerLower === ROCK)
+				if(playerSelection === ROCK)
 				{
-					switch(computerLower)
+					switch(computerSelection)
 					{
 						case ROCK: return DRAW;
 						case PAPER: return LOST;
 						case SCISSORS: return WON;
 					}
 				}
-				else if(playerLower === PAPER)
+				else if(playerSelection === PAPER)
 				{
-					switch(computerLower)
+					switch(computerSelection)
 					{
 						case ROCK: return WON;
 						case PAPER: return DRAW;
 						case SCISSORS: return LOST;
 					}
 				}
-				else // playerLower === SCISSORS
+				else // playerSelection === SCISSORS
 				{
-					switch(computerLower)
+					switch(computerSelection)
 					{
 						case ROCK: return LOST;
 						case PAPER: return WON;
@@ -66,10 +63,13 @@
 				}
 			}
 
+			function standardiseSelection(selection)
+			{
+				return selection.toLowerCase();
+			}
+
 			function isValidSelection(selection)
 			{
-				const lowerSelection = selection.toLowerCase();
-
 				switch(lowerSelection)
 				{
 					case ROCK:
@@ -86,7 +86,9 @@
 
 			do
 			{
-				playerSelection = prompt('Your selection: ');
+				const selection = prompt('Your selection: ');
+				playerSelection = standardiseSelection(selection);
+
 			} while( !isValidSelection(playerSelection) )
 
 			const computerSelection = computerPlay();
