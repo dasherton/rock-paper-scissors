@@ -6,20 +6,85 @@
 	</head>
 	<body>
 		<script>
-			const ROCK = 'Rock';
-			const PAPER = 'Paper';
-			const SCISSORS = 'Scissors';
+			const ROCK = 'rock';
+			const PAPER = 'paper';
+			const SCISSORS = 'scissors';
 
-			function computerPlay() {
+			const LOST = 0;
+			const DRAW = 1;
+			const WON  = 2;
+
+			function computerPlay()
+			{
 				const r = Math.random();
 
-				if(r < 0.3) {
+				if(r < 0.3)
+				{
 					return ROCK;				
-				} else if( r < 0.6) {
+				}
+				else if(r < 0.6)
+				{
 					return PAPER;
-				} else {
+				}
+				else 
+				{
 					return SCISSORS;
 				}
+			}
+
+			function playRound(playerSelection, computerSelection)
+			{
+				const playerLower = playerSelection.toLowerCase();
+				const computerLower = playerSelection.toLowerCase();
+
+				if(playerSelection === ROCK)
+				{
+					switch(computerSelection)
+					{
+						case ROCK: return DRAW;
+						case PAPER: return LOST;
+						case SCISSORS: return WON;
+					}
+				}
+				else if(playerSelection === PAPER)
+				{
+					switch(computerSelection)
+					{
+						case ROCK: return WON;
+						case PAPER: return DRAW;
+						case SCISSORS: return LOST;
+					}
+				}
+				else // playerSelection === SCISSORS
+				{
+					switch(computerSelection)
+					{
+						case ROCK: return LOST;
+						case PAPER: return WON;
+						case SCISSORS: return DRAW;
+					}
+				}
+			}
+
+			const playerSelection = prompt('Your selection: ');
+			const computerSelection = computerPlay();
+
+			console.log(`You play: ${playerSelection}`);
+			console.log(`Computer plays: ${computerSelection}`);
+
+			const result = playRound(playerSelection, computerSelection);
+
+			if(result === WON)
+			{
+				alert(`You won!  ${playerSelection} beats ${computerSelection}`);
+			}
+			else if(result === DRAW)
+			{
+				alert(`You drew.  The computer also chose ${computerSelection}`);
+			}
+			else
+			{
+				alert(`You lost!  The computer chose ${computerSelection}}`);
 			}
 		</script>
 	</body>
