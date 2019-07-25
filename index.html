@@ -101,6 +101,10 @@
 				console.log(`You play: ${playerSelection}`);
 				console.log(`Computer plays: ${computerSelection}`);
 
+				/*
+				 * TODO: Play multiple rounds until someone has won
+				*/
+
 				const result = playRound(playerSelection, computerSelection);
 
 				if(result === WON)
@@ -117,9 +121,25 @@
 					alert(`You lost!  The computer chose ${computerSelection}}`);
 					++computerScore;
 				}
+
+				return true; // Always return result that you have won (for now)
 			}
 
-			playGame();
+			function play()
+			{
+				const result = playGame();
+
+				if(result)
+				{
+					alert("You have won!");
+				}
+				else
+				{
+					alert("Unfortunately, you have lost");
+				}
+			}
+
+			play();
 		</script>
 	</body>
 </html>
