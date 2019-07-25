@@ -82,34 +82,39 @@
 				}
 			}
 
-			let playerSelection;
-
-			do
+			function playGame()
 			{
-				const selection = prompt('Your selection: ');
-				playerSelection = standardiseSelection(selection);
+				let playerSelection;
 
-			} while( !isValidSelection(playerSelection) )
+				do
+				{
+					const selection = prompt('Your selection: ');
+					playerSelection = standardiseSelection(selection);
 
-			const computerSelection = computerPlay();
+				} while( !isValidSelection(playerSelection) )
 
-			console.log(`You play: ${playerSelection}`);
-			console.log(`Computer plays: ${computerSelection}`);
+				const computerSelection = computerPlay();
 
-			const result = playRound(playerSelection, computerSelection);
+				console.log(`You play: ${playerSelection}`);
+				console.log(`Computer plays: ${computerSelection}`);
 
-			if(result === WON)
-			{
-				alert(`You won!  ${playerSelection} beats ${computerSelection}`);
+				const result = playRound(playerSelection, computerSelection);
+
+				if(result === WON)
+				{
+					alert(`You won!  ${playerSelection} beats ${computerSelection}`);
+				}
+				else if(result === DRAW)
+				{
+					alert(`You drew.  The computer also chose ${computerSelection}`);
+				}
+				else
+				{
+					alert(`You lost!  The computer chose ${computerSelection}}`);
+				}
 			}
-			else if(result === DRAW)
-			{
-				alert(`You drew.  The computer also chose ${computerSelection}`);
-			}
-			else
-			{
-				alert(`You lost!  The computer chose ${computerSelection}}`);
-			}
+
+			playGame();
 		</script>
 	</body>
 </html>
