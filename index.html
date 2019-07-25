@@ -84,6 +84,9 @@
 
 			function playGame()
 			{
+				let playerScore = 0;
+				let computerScore = 0;
+
 				let playerSelection;
 
 				do
@@ -103,6 +106,7 @@
 				if(result === WON)
 				{
 					alert(`You won!  ${playerSelection} beats ${computerSelection}`);
+					++playerScore;
 				}
 				else if(result === DRAW)
 				{
@@ -111,6 +115,7 @@
 				else
 				{
 					alert(`You lost!  The computer chose ${computerSelection}}`);
+					++computerScore;
 				}
 			}
 
