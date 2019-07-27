@@ -118,7 +118,7 @@
 					}
 					else
 					{
-						alert(`You lost this round!  The computer chose ${computerSelection}}`);
+						alert(`You lost this round!  The computer chose ${computerSelection}`);
 						++computerScore;
 						++round;
 					}
@@ -131,7 +131,7 @@
 			{
 				const NUM_ROUNDS = 1;
 
-				alert("You are about to play 3 round of Rock, Paper Scissors ...");
+				alert(`You are about to play ${NUM_ROUNDS} round${NUM_ROUNDS > 1 ? "s" : ""} of Rock, Paper Scissors ...`);
 
 				const result = playGame(NUM_ROUNDS);
 
