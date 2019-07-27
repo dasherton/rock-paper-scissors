@@ -82,44 +82,47 @@
 				}
 			}
 
-			function playGame()
+			function playGame(numRounds)
 			{
-				let playerScore = 0;
-				let computerScore = 0;
+				let round = 1;
 
-				let playerSelection;
-
-				do
+				while(round <= numRounds)
 				{
-					const selection = prompt('Your selection: ');
-					playerSelection = standardiseSelection(selection);
+					let playerScore = 0;
+					let computerScore = 0;
 
-				} while( !isValidSelection(playerSelection) )
+					let playerSelection;
 
-				const computerSelection = computerPlay();
+					do
+					{
+						const selection = prompt('Your selection: ');
+						playerSelection = standardiseSelection(selection);
 
-				console.log(`You play: ${playerSelection}`);
-				console.log(`Computer plays: ${computerSelection}`);
+					} while( !isValidSelection(playerSelection) )
 
-				/*
-				 * TODO: Play multiple rounds until someone has won
-				*/
+					const computerSelection = computerPlay();
 
-				const result = playRound(playerSelection, computerSelection);
+					console.log(`You play: ${playerSelection}`);
+					console.log(`Computer plays: ${computerSelection}`);
 
-				if(result === WON)
-				{
-					alert(`You won!  ${playerSelection} beats ${computerSelection}`);
-					++playerScore;
-				}
-				else if(result === DRAW)
-				{
-					alert(`You drew.  The computer also chose ${computerSelection}`);
-				}
-				else
-				{
-					alert(`You lost!  The computer chose ${computerSelection}}`);
-					++computerScore;
+					const result = playRound(playerSelection, computerSelection);
+
+					if(result === WON)
+					{
+						alert(`You won this round!  ${playerSelection} beats ${computerSelection}`);
+						++playerScore;
+					}
+					else if(result === DRAW)
+					{
+						alert(`You drew this round.  The computer also chose ${computerSelection}`);
+					}
+					else
+					{
+						alert(`You lost this round!  The computer chose ${computerSelection}}`);
+						++computerScore;
+					}
+
+					++round;
 				}
 
 				return true; // Always return result that you have won (for now)
@@ -127,9 +130,11 @@
 
 			function play()
 			{
+				const NUM_ROUNDS = 1;
+
 				alert("You are about to play 3 round of Rock, Paper Scissors ...");
 
-				const result = playGame();
+				const result = playGame(NUM_ROUNDS);
 
 				if(result)
 				{
