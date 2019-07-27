@@ -85,12 +85,11 @@
 			function playGame(numRounds)
 			{
 				let round = 1;
+				let playerScore = 0;
+				let computerScore = 0;
 
 				while(round <= numRounds)
 				{
-					let playerScore = 0;
-					let computerScore = 0;
-
 					let playerSelection;
 
 					do
@@ -111,18 +110,18 @@
 					{
 						alert(`You won this round!  ${playerSelection} beats ${computerSelection}`);
 						++playerScore;
+						++round;
 					}
 					else if(result === DRAW)
 					{
-						alert(`You drew this round.  The computer also chose ${computerSelection}`);
+						alert(`Replay this round.  The computer also chose ${computerSelection} `);
 					}
 					else
 					{
 						alert(`You lost this round!  The computer chose ${computerSelection}}`);
 						++computerScore;
+						++round;
 					}
-
-					++round;
 				}
 
 				return true; // Always return result that you have won (for now)
