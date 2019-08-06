@@ -6,6 +6,8 @@ const LOST = 0;
 const DRAW = 1;
 const WON  = 2;
 
+const TARGET_SCORE = 5;
+
 let buttons = Array.from(document.querySelectorAll('button'));
 let score = document.querySelector('#score');
 
@@ -61,6 +63,12 @@ function determineWinner(playerSelection, computerSelection)
 	}
 }
 
+function reset()
+{
+	playerScore = 0;
+	computerScore = 0;
+}
+
 function setScore(playerScore, computerScore)
 {
 	score.textContent = `The score is ${playerScore}-${computerScore}`;
@@ -78,12 +86,23 @@ function playRound(playerSelection)
 	}
 	else if(result === DRAW)
 	{
-		alert(`Replay this round.  The computer also chose ${computerSelection} `);
+		alert(`You lost this round!  The computer chose ${computerSelection}`);
+		++computerScore;
 	}
 	else
 	{
-		alert(`You lost this round!  The computer chose ${computerSelection}`);
-		++computerScore;
+		alert(`Replay this round.  The computer also chose ${computerSelection} `);
+	}
+
+	if( playerScore == TARGET_SCORE )
+	{
+		alert("You have won!");
+		reset();
+	}
+	else if( computerScore == TARGET_SCORE )
+	{
+		alert("Better luck next time");
+		reset();
 	}
 
 	setScore(playerScore, computerScore);
