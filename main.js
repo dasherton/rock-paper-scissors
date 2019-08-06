@@ -84,7 +84,7 @@ function playRound(playerSelection)
 		alert(`You won this round!  ${playerSelection} beats ${computerSelection}`);
 		++playerScore;
 	}
-	else if(result === DRAW)
+	else if(result === LOST)
 	{
 		alert(`You lost this round!  The computer chose ${computerSelection}`);
 		++computerScore;
