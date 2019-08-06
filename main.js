@@ -119,22 +119,11 @@ function playGame(numRounds)
 	return playerScore >= computerScore;
 }
 
-function play()
-{
-	const NUM_ROUNDS = 1;
+var buttons = Array.from(document.querySelectorAll('button'));
 
-	alert(`You are about to play ${NUM_ROUNDS} round${NUM_ROUNDS > 1 ? "s" : ""} of Rock, Paper Scissors ...`);
-
-	const result = playGame(NUM_ROUNDS);
-
-	if(result)
-	{
-		alert("You have won!");
-	}
-	else
-	{
-		alert("Unfortunately, you have lost");
-	}
-}
-
-play();
+buttons.forEach( (button) => {
+	const val = button.value;
+	button.addEventListener('click', (e) => {
+		console.log(val);
+	});
+} );
