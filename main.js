@@ -6,6 +6,12 @@ const LOST = 0;
 const DRAW = 1;
 const WON  = 2;
 
+let buttons = Array.from(document.querySelectorAll('button'));
+let score = document.querySelector('#score');
+
+let playerScore = 0;
+let computerScore = 0;
+
 function computerPlay()
 {
 	const r = Math.random();
@@ -55,86 +61,38 @@ function determineWinner(playerSelection, computerSelection)
 	}
 }
 
-function standardiseSelection(selection)
-{
-	return selection.toLowerCase();
-}
-
-function isValidSelection(selection)
-{
-	switch(selection)
-	{
-		case ROCK:
-		case PAPER:
-		case SCISSORS:
-			return true;
-
-		default:
-			return false;
-	}
-}
-
-function playGame(numRounds)
-{
-	let round = 1;
-	let playerScore = 0;
-	let computerScore = 0;
-
-	while(round <= numRounds)
-	{
-		let playerSelection;
-
-		do
-		{
-			const selection = prompt('Your selection: ');
-			playerSelection = standardiseSelection(selection);
-
-		} while( !isValidSelection(playerSelection) )
-
-		const computerSelection = computerPlay();
-
-		console.log(`You play: ${playerSelection}`);
-		console.log(`Computer plays: ${computerSelection}`);
-
-		const result = determineWinner(playerSelection, computerSelection);
-
-		if(result === WON)
-		{
-			alert(`You won this round!  ${playerSelection} beats ${computerSelection}`);
-			++playerScore;
-			++round;
-		}
-		else if(result === DRAW)
-		{
-			alert(`Replay this round.  The computer also chose ${computerSelection} `);
-		}
-		else
-		{
-			alert(`You lost this round!  The computer chose ${computerSelection}`);
-			++computerScore;
-			++round;
-		}
-	}
-
-	return playerScore >= computerScore;
-}
-
 function setScore(playerScore, computerScore)
 {
 	score.textContent = `The score is ${playerScore}-${computerScore}`;
 }
 
-var buttons = Array.from(document.querySelectorAll('button'));
-var score = document.querySelector('#score');
+function playRound(playerSelection)
+{
+	const computerSelection = computerPlay();
+	const result = determineWinner(playerSelection, computerSelection);
 
-var playerScore = 0;
-var computerScore = 0;
+	if(result === WON)
+	{
+		alert(`You won this round!  ${playerSelection} beats ${computerSelection}`);
+		++playerScore;
+	}
+	else if(result === DRAW)
+	{
+		alert(`Replay this round.  The computer also chose ${computerSelection} `);
+	}
+	else
+	{
+		alert(`You lost this round!  The computer chose ${computerSelection}`);
+		++computerScore;
+	}
+
+	setScore(playerScore, computerScore);
+}
 
 setScore(playerScore, computerScore);
 
 buttons.forEach( (button) => {
-	const val = button.value;
 	button.addEventListener('click', (e) => {
-		console.log(val);
+		playRound(button.value);
 	});
 } );
