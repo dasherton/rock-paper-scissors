@@ -119,7 +119,18 @@ function playGame(numRounds)
 	return playerScore >= computerScore;
 }
 
+function setScore(playerScore, computerScore)
+{
+	score.textContent = `The score is ${playerScore}-${computerScore}`;
+}
+
 var buttons = Array.from(document.querySelectorAll('button'));
+var score = document.querySelector('#score');
+
+var playerScore = 0;
+var computerScore = 0;
+
+setScore(playerScore, computerScore);
 
 buttons.forEach( (button) => {
 	const val = button.value;
