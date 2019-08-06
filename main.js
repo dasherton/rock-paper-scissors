@@ -24,7 +24,7 @@ function computerPlay()
 	}
 }
 
-function playRound(playerSelection, computerSelection)
+function determineWinner(playerSelection, computerSelection)
 {
 	if(playerSelection === ROCK)
 	{
@@ -96,7 +96,7 @@ function playGame(numRounds)
 		console.log(`You play: ${playerSelection}`);
 		console.log(`Computer plays: ${computerSelection}`);
 
-		const result = playRound(playerSelection, computerSelection);
+		const result = determineWinner(playerSelection, computerSelection);
 
 		if(result === WON)
 		{
